@@ -59,8 +59,6 @@ include_directories(
         User/drivers
 )
 
-add_definitions(-DUSE_HAL_DRIVER -DSTM32F103xE)
-
 file(GLOB_RECURSE SOURCES
         "Startup/*.*"
         "Drivers/*.*"
