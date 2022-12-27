@@ -47,7 +47,7 @@ void BASIC_TIM_Init(void)
     // 设置中断来源
     NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn ;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 
@@ -68,8 +68,8 @@ void TIM6_IRQHandler(void)
     {
         switch (i)
         {
-            case 0:GPIO_ResetBits(LED_GPIO_PORT, LED_GPIO_Pin);i++;break;
-            case 1:GPIO_SetBits(LED_GPIO_PORT, LED_GPIO_Pin);i=0;break;
+            case 0:GPIO_ResetBits(WAVE_GPIO_PORT, WAVE_GPIO_Pin);i++;break;
+            case 1:GPIO_SetBits(WAVE_GPIO_PORT, WAVE_GPIO_Pin);i=0;break;
         }
 
         TIM_ClearITPendingBit(BASIC_TIM, TIM_IT_Update);  //清除TIMx的中断待处理位:TIM 中断源

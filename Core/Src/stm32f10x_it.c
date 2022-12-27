@@ -23,6 +23,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
+#include "usart.h"
+#include "timer_2.h"
+#include "main.h"
 
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
@@ -151,6 +154,28 @@ void SysTick_Handler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
+
+extern float Frequency_value;
+void TIM2_IRQHandler(void)
+{
+    if ( TIM_GetITStatus( TIM2, TIM_IT_Update) != RESET )
+    {
+        TIM_ClearITPendingBit(TIM2 , TIM_FLAG_Update);
+        Frequency_value = TIM_GetCounter(TIM3)/0.2;
+        TIM_SetCounter(TIM3,0);
+    }
+}
+
+// 串口中断服务函数
+void DEBUG_USART_IRQHandler(void)
+{
+    uint8_t ucTemp;
+    if(USART_GetITStatus(DEBUG_USARTx,USART_IT_RXNE)!=RESET)
+    {
+        ucTemp = USART_ReceiveData(DEBUG_USARTx);
+        USART_SendData(DEBUG_USARTx,ucTemp);
+    }
+}
 
 /**
   * @}

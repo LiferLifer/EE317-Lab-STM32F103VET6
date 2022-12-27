@@ -1,7 +1,7 @@
 #include "key.h"
 #include "sys.h"
 
-u8 flag = 0;
+u8 flag = 1;
 
 void KEY_GPIO_Config(void)
 {
@@ -18,10 +18,10 @@ void KEY_GPIO_Config(void)
 
 void KEY_Scan()
 {
-    if(PCin(13) == 0)
+    if(PCin(13) == 1)
     {
-        for (int i = 0; i < 720000; i++);
-        if(PCin(13) == 0)
+        for (int i = 0; i < 72000; i++);
+        if(PCin(13) == 1)
         {
             if(flag == 0)
             {
@@ -32,7 +32,7 @@ void KEY_Scan()
             }
 
         }
-        while(!PCin(13));
+        while(PCin(13));
     }
 
 }
