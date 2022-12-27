@@ -14,7 +14,6 @@ void Main() {
     KEY_GPIO_Config();
     WAVE_GPIO_Config();
     BASIC_TIM_Init();
-
     LED_OFF();
 
     // 设置中断组为0
@@ -24,7 +23,6 @@ void Main() {
 //    Usart_SendString( DEBUG_USARTx,"\nHello!\n");
 
     while (1) {
-//        Usart_SendString( DEBUG_USARTx,"\nHello!\n");
         char msg[50] = {0};
         sprintf(msg, "Current Frequency: %.2lf Hz.\n", Frequency_value);
         Usart_SendString(DEBUG_USARTx, msg);

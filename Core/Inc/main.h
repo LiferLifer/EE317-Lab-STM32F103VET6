@@ -21,15 +21,21 @@ extern "C" {
  * |          Prototypes          |
  * +==============================+ */
 #ifdef MANUAL_SYSCLK_CONFIG
-	void SystemClock_Config(void);
+
+void SystemClock_Config(void);
+
 #endif
 
 #ifdef USE_USER_MAIN
-	void Main();
+
+void Main();
+
 #endif
 
 #ifdef USE_ERROR_HANDLER
-	void Error_Handler(void);
+
+void Error_Handler(void);
+
 #endif
 
 #ifdef __cplusplus
